@@ -72,8 +72,16 @@
 
 ## Session 9 — 2026-03-09 SAST
 **Agent:** coding
-**Goal:** Publish fetchtype CLI to npm and update all package references.
-**Completed:** Published `fetchtype@0.1.0` to npm (unscoped, was `@fetchtype/cli`). Updated all references across 13 files from `@fetchtype/cli` to `fetchtype`. Build and all 134 tests pass.
-**Blocked:** None.
-**Next:** Commit all changes. Vercel deployment for fetchtype.com.
-**Commit:** uncommitted
+**Goal:** Publish to npm, split site into two deploy targets, deploy to Vercel.
+**Completed:**
+- Published `fetchtype@0.1.0` to npm (unscoped, was `@fetchtype/cli`).
+- Updated all 13 files referencing `@fetchtype/cli` to `fetchtype`.
+- Split `apps/web` into `apps/www` (fetchtype.com) and `apps/docs` (fetchtype.dev).
+- Cross-links wired: .com nav → fetchtype.dev for docs, .dev brand → fetchtype.com for home.
+- Created GitHub repo at github.com/Tim-ReJet/fetchtype, pushed main branch.
+- Deployed both Vercel projects under `reactorjet-projects` team: `fetchtype-www` and `fetchtype-docs`.
+- Fixed `fetchtype-docs` build config in Vercel dashboard (build: `pnpm --filter @fetchtype/docs build`, output: `apps/docs/dist`).
+- Custom domains added in Vercel: fetchtype.com → fetchtype-www, fetchtype.dev → fetchtype-docs.
+**Blocked:** DNS propagation — Porkbun ALIAS/CNAME parking records need replacing with Vercel A/CNAME records. User completing manually.
+**Next:** Verify domains resolve after DNS propagation. Clean up stale Vercel projects from wrong scope. Connect GitHub integration for auto-deploys on push.
+**Commit:** 99d866d (site split)

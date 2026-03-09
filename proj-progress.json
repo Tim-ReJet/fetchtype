@@ -1,10 +1,10 @@
 {
   "_meta": {
     "description": "Machine-readable project snapshot. Update alongside proj-progress.txt after major milestones.",
-    "last_updated": "2026-03-09T17:50:00+0200"
+    "last_updated": "2026-03-09T20:00:00+0200"
   },
-  "phase": "phases-1-6-complete",
-  "current_goal": "All 6 build-to-launch phases implemented. Site update and W3C interchange remain.",
+  "phase": "launched",
+  "current_goal": "DNS propagation pending. Both sites deployed to Vercel, npm package live.",
   "feature_file": "feature-list.json",
   "test_count": 134,
   "completed": [
@@ -21,7 +21,6 @@
     "CLI build command now supports format-scoped artifact output for external CI usage",
     "CLI validate now emits GitHub workflow annotations and step-summary markdown for PR review flows",
     "Launch docs now define an icon-led anti-bento visual direction for future UI and marketing work",
-    "Static launch site and root Vercel deployment config added for fetchtype.com",
     "Homepage rewritten: problem-first copy, specific WCAG thresholds, visual briefs for assets",
     "Docs page rewritten: stripped internal ops, added token format docs, validation rules, CI workflow",
     "Build-to-launch roadmap created with 6 phases from validator strengthening through agent integration",
@@ -33,10 +32,17 @@
     "Phase 5: Google Fonts catalog (31 fonts), font suggestion engine, font loading validation (fallbacks/payload/availability)",
     "Phase 6: MCP server with 5 tools via @modelcontextprotocol/sdk, natural language init (--prompt) with rule-based parsing",
     "F018: W3C Design Tokens $value import/export with CLI import command and build --format w3c",
-    "Publish fetchtype to npm (renamed from @fetchtype/cli)"
+    "Published fetchtype@0.1.0 to npm (renamed from @fetchtype/cli to unscoped fetchtype)",
+    "Split apps/web into apps/www (fetchtype.com) and apps/docs (fetchtype.dev)",
+    "GitHub repo created at github.com/Tim-ReJet/fetchtype",
+    "Both Vercel projects deployed under reactorjet-projects team with GitHub integration connected"
   ],
-  "blocked": [],
+  "blocked": [
+    "DNS propagation: user updating Porkbun A/CNAME records to point to Vercel"
+  ],
   "next": [
-    "Update site HTML to reflect Phase 1-6 capabilities (presets, modes, exporters, preview, font intelligence, agent integration)"
+    "Verify fetchtype.com and fetchtype.dev resolve after DNS propagation",
+    "Clean up stale Vercel projects deployed under wrong scope (reactorjet personal)",
+    "Consider: README.md for npm package page, GitHub repo description/topics"
   ]
 }
