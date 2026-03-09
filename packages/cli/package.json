@@ -1,6 +1,6 @@
 {
   "name": "fetchtype",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typography validation for design systems. Catch readability bugs, enforce WCAG thresholds, export to CSS/Tailwind/shadcn/W3C.",
   "license": "MIT",
   "repository": {
