@@ -85,7 +85,7 @@ $ fetchtype validate --input fetchtype.tokens.json
             <a href="#problem">why</a>
             <a href="#validation">what</a>
             <a href="#install">install</a>
-            <a href="/docs/">docs</a>
+            <a href="https://fetchtype.dev">docs</a>
           </nav>
         </header>
 
@@ -152,14 +152,6 @@ $ fetchtype validate --input fetchtype.tokens.json
              ═══════════════════════════════════════════════════ -->
         <section class="system-shell assemble-target" id="problem">
           <div class="system-grid">
-
-            <!--
-              VISUAL BRIEF — Card 1: "The drift"
-              Show a side-by-side comparison of a Figma spec vs shipped code.
-              Left column: design intent (line-height: 1.5, font-size: 16px, max-width: 65ch).
-              Right column: what shipped (line-height: 1.2, font-size: 14px, max-width: none).
-              Each row has a red/amber indicator. Terminal-style typography, not a screenshot.
-            -->
             <article class="system-card">
               <p class="card-kicker">the drift</p>
               <h3>Design intent doesn't survive the build.</h3>
@@ -170,15 +162,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — Card 2: "The numbers"
-              Four small diagnostic panels showing real validation checks:
-              1. A paragraph with line-height overlay (1.2 vs 1.5, gap between lines marked)
-              2. Two color swatches with contrast ratio: 4.0:1 in red, 4.6:1 in green
-              3. A button "Submit" at 12px next to one at 15px
-              4. A text block with character-count ruler: 92ch vs 68ch
-              Each panel styled like fetchtype validation output.
-            -->
             <article class="system-card">
               <p class="card-kicker">the numbers</p>
               <h3>These are testable failures, not taste.</h3>
@@ -190,13 +173,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — Card 3: "The cause"
-              A timeline showing typography drift across sprints:
-              Sprint 1: consistent tokens ship. Sprint 4: hardcoded 14px in a new component.
-              Sprint 8: different heading scale on marketing page. Sprint 12: accessibility audit
-              flags 23 violations. The timeline gets progressively messier — more divergent lines.
-            -->
             <article class="system-card">
               <p class="card-kicker">the cause</p>
               <h3>Typography involves expertise most teams don't have.</h3>
@@ -207,14 +183,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — Card 4: "The cost"
-              A product screenshot (or stylized UI) showing the cumulative effect: a settings page
-              with 4 different font sizes for similar elements, inconsistent spacing, a caption
-              that's nearly invisible against its background. Annotated with fetchtype diagnostic
-              markers. The point: none of this looks "broken" — it looks slightly off, which is
-              worse because nobody catches it.
-            -->
             <article class="system-card">
               <p class="card-kicker">the cost</p>
               <h3>The alternative is not doing it at all.</h3>
@@ -232,19 +200,6 @@ $ fetchtype validate --input fetchtype.tokens.json
              ═══════════════════════════════════════════════════ -->
         <section class="system-shell assemble-target" id="validation">
           <div class="system-grid">
-
-            <!--
-              VISUAL BRIEF — Validation output
-              A full-width terminal block showing real fetchtype validate output:
-                ✗ color.light — contrast ratio 4.0:1 (requires ≥ 4.5:1)
-                  text: #6b7280 on background: #ffffff
-                ⚠ typography.body — line-height 1.3 (recommended ≥ 1.5)
-                ✓ typography.button — font-size 15px (minimum 14px)
-                ✓ layout.maxWidth.prose — 68ch (maximum 75ch)
-                ✓ references — all aliases resolve, no cycles
-                2 issues · 4 passed · 1 error · 1 warning
-              Monospace, color-coded, dense. This IS the product proof.
-            -->
             <article class="system-card">
               <p class="card-kicker">validate</p>
               <h3>A CI gate for typography.</h3>
@@ -256,11 +211,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — Build output
-              Two code panels side by side. Left: tokens.css showing :root {} with CSS custom
-              properties. Right: tailwind.config.ts partial. Both truncated naturally at panel edge.
-            -->
             <article class="system-card">
               <p class="card-kicker">export</p>
               <h3>CSS, Tailwind, shadcn, and W3C tokens.</h3>
@@ -274,13 +224,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — GitHub PR screenshot
-              A realistic GitHub PR view with fetchtype annotations inline on the diff:
-              "⚠ fetchtype contrast-ratio: text #6b7280 on #ffffff gives 4.0:1 (requires ≥ 4.5:1)"
-              Below the diff, a Step Summary section with the markdown diagnostic table.
-              Should look like real GitHub UI — not stylized, not branded.
-            -->
             <article class="system-card">
               <p class="card-kicker">review</p>
               <h3>Typography violations in the PR, not in production.</h3>
@@ -291,10 +234,6 @@ $ fetchtype validate --input fetchtype.tokens.json
               </p>
             </article>
 
-            <!--
-              VISUAL BRIEF — Checks reference
-              A clean typographic table showing all 13 checks with thresholds.
-            -->
             <article class="system-card">
               <p class="card-kicker">what gets checked</p>
               <h3>13 rules. Specific thresholds, not opinions.</h3>
@@ -337,8 +276,8 @@ pnpm exec fetchtype build --input fetchtype.tokens.json --format tailwind
 pnpm exec fetchtype suggest --context interface
 pnpm exec fetchtype preview -i fetchtype.tokens.json</code></pre>
             <div class="install-links">
-              <a class="button button-primary" href="/docs/">docs</a>
-              <a class="button button-secondary" href="/docs/#github">ci setup</a>
+              <a class="button button-primary" href="https://fetchtype.dev">docs</a>
+              <a class="button button-secondary" href="https://fetchtype.dev#github">ci setup</a>
             </div>
           </div>
         </section>

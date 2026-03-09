@@ -234,9 +234,9 @@ Add to `feature-list.json` as each is implemented:
 | `packages/core/src/base.tokens.json` | Base preset | 1, 2 |
 | `packages/cli/src/index.ts` | CLI commands | 1, 3, 4, 5, 6 |
 | `packages/fonts/src/index.ts` | Font helpers | 5 |
-| `apps/web/index.html` | Homepage | all |
-| `apps/web/docs/index.html` | Docs page | all |
-| `apps/web/script.js` | Mode switcher interaction | 2 |
+| `apps/www/index.html` | Homepage — fetchtype.com | all |
+| `apps/docs/index.html` | Docs — fetchtype.dev | all |
+| `apps/www/script.js` | Mode switcher interaction | 2 |
 
 ## Session protocol
 
@@ -255,7 +255,7 @@ Add to `feature-list.json` as each is implemented:
 pnpm build                  # build everything
 pnpm test                   # run all tests
 pnpm typecheck              # type-check
-pnpm --filter @fetchtype/web build  # build site
+pnpm --filter @fetchtype/www build && pnpm --filter @fetchtype/docs build  # build sites
 
 # CLI direct
 node packages/cli/dist/bin.js init

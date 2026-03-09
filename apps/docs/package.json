@@ -1,0 +1,11 @@
+{
+  "name": "@fetchtype/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp index.html dist/index.html && cp styles.css dist/styles.css",
+    "dev": "python3 -m http.server 4174",
+    "preview": "python3 -m http.server 4174 -d dist"
+  }
+}

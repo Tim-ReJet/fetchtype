@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm --filter @fetchtype/www build",
-  "outputDirectory": "apps/www/dist",
+  "buildCommand": "pnpm --filter @fetchtype/docs build",
+  "outputDirectory": "apps/docs/dist",
   "cleanUrls": true
 }

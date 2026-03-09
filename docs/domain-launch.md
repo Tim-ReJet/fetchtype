@@ -17,8 +17,8 @@ If this repo is not on GitHub, GitLab, or Bitbucket yet, push it to one of those
 2. Leave the root directory as the repository root.
 3. Vercel will use:
    - `installCommand`: `pnpm install`
-   - `buildCommand`: `pnpm --filter @fetchtype/web build`
-   - `outputDirectory`: `apps/web/dist`
+   - `buildCommand`: `pnpm --filter @fetchtype/www build`
+   - `outputDirectory`: `apps/www/dist`
 4. Add both domains in Vercel:
    - `fetchtype.com`
    - `www.fetchtype.com`
@@ -43,11 +43,23 @@ Historically, Vercel often used `76.76.21.21` for apex A records. Their current 
 - The apex domain cannot use a standards-compliant CNAME, so it typically uses an A record instead.
 - Keeping `www` primary gives the host more routing flexibility while still letting `fetchtype.com` redirect cleanly.
 
+## Second Vercel Project — fetchtype.dev
+
+Create a separate Vercel project for the docs site:
+
+1. Import the same repo into a second Vercel project.
+2. Set:
+   - `buildCommand`: `pnpm --filter @fetchtype/docs build`
+   - `outputDirectory`: `apps/docs/dist`
+3. Add the domain `fetchtype.dev` to this project.
+
 ## Repo State
 
-- Launch site source: `apps/web`
+- Homepage source (fetchtype.com): `apps/www`
+- Docs source (fetchtype.dev): `apps/docs`
 - Root deploy config: `vercel.json`
-- Build output: `apps/web/dist`
+- Homepage build output: `apps/www/dist`
+- Docs build output: `apps/docs/dist`
 
 ## After DNS
 

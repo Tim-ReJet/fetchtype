@@ -10,7 +10,7 @@ Feature development → site visuals → publish → build remaining capabilitie
 
 1. **Homepage + docs rewrite** — done (this session)
 2. **Visual assets** — create the visual briefs embedded in the HTML comments
-3. **Build and deploy** — `pnpm --filter @fetchtype/web build`, push, Vercel picks it up
+3. **Build and deploy** — `pnpm --filter @fetchtype/www build`, push, Vercel picks it up
 4. **Publish CLI to npm** — `fetchtype` needs to be installable for the install commands to work
 
 ### Visual asset list (from HTML comments)
