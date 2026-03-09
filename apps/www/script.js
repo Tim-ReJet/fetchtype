@@ -262,7 +262,7 @@ function initGrain() {
   const ctx = grainCanvas.getContext('2d');
   if (!ctx) return;
 
-  const size = 128;
+  const size = 256;
   grainCanvas.width = size;
   grainCanvas.height = size;
 
@@ -277,7 +277,7 @@ function initGrain() {
       data[j] = v;
       data[j + 1] = v;
       data[j + 2] = v;
-      data[j + 3] = 18;
+      data[j + 3] = 12;
     }
     frames.push(imageData);
   }

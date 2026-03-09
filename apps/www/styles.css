@@ -24,6 +24,8 @@
   --font-reading: 'Charter', 'Georgia', 'Times New Roman', serif;
   --font-mono:
     'IBM Plex Mono', 'SFMono-Regular', 'SF Mono', Menlo, Monaco, 'Liberation Mono', monospace;
+  --font-accent: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-handwritten: 'Caveat', 'Marker Felt', cursive;
 }
 
 * {
@@ -141,8 +143,8 @@ body.font-mode-mono {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.32;
-  image-rendering: pixelated;
+  opacity: 0.28;
+  image-rendering: auto;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -282,6 +284,47 @@ pre,
   font-family: var(--render-body, var(--font-system));
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   line-height: 1.62;
+}
+
+/* ── TREND: Gradient text fill ── */
+
+.gradient-fill {
+  background: linear-gradient(
+    135deg,
+    var(--role-tone, var(--warm)) 0%,
+    color-mix(in oklch, var(--role-tone, var(--warm)), var(--ink) 40%) 50%,
+    var(--ink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── TREND: Inline highlights & underlines ── */
+
+.text-highlight {
+  text-decoration: underline;
+  text-decoration-color: var(--role-tone, var(--warm));
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.text-mark {
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
+  background: color-mix(in oklch, var(--role-tone, var(--warm)), transparent 82%);
+}
+
+/* ── TREND: Unique / fringe display fonts ── */
+
+.accent-serif {
+  font-family: var(--font-accent);
+  font-style: italic;
+}
+
+.accent-handwritten {
+  font-family: var(--font-handwritten);
+  font-weight: 600;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -502,6 +545,14 @@ pre,
   text-align: right;
 }
 
+.mode-specimen-caption.accent-handwritten {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: var(--role-tone, var(--warm));
+  opacity: 0.7;
+  transform: rotate(-1.5deg);
+}
+
 .mode-panel {
   display: grid;
   gap: 1.4rem;
@@ -528,7 +579,7 @@ pre,
    ═══════════════════════════════════════════════════ */
 
 .export-stage {
-  padding: 1.6rem;
+  padding: 1.8rem 2rem;
   border: 1px solid var(--line);
   border-radius: calc(var(--radius-xl) - 8px);
   background: var(--panel-strong);
@@ -604,8 +655,8 @@ pre,
 .workflow-step {
   display: grid;
   grid-template-columns: 3rem 1fr;
-  gap: 1rem;
-  padding: 1.2rem;
+  gap: 1.2rem;
+  padding: 1.35rem 1.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--panel-strong);
@@ -641,13 +692,47 @@ pre,
   margin-bottom: 0.8rem;
 }
 
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.hero-cta .terminal {
+  flex-shrink: 0;
+}
+
+.hero-cta-note {
+  color: var(--muted);
+  font-family: var(--font-system);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
 .install-cta {
   text-align: center;
+  margin-top: 2.4rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.cta-heading {
+  margin-bottom: 1rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: -0.04em;
 }
 
 .install-cta .terminal {
   display: inline-block;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.cta-sub {
+  margin-bottom: 1.4rem;
+  font-size: 0.92rem;
 }
 
 .cta-links {
@@ -725,13 +810,14 @@ pre,
 .terminal {
   overflow-x: auto;
   margin: 0;
-  padding: 1rem;
+  padding: 1.1rem 1.2rem;
   border-radius: var(--radius-md);
   background: #12100f;
   color: #f3eee5;
   font-family: var(--font-mono);
-  font-size: 0.92rem;
-  line-height: 1.7;
+  font-size: 0.88rem;
+  line-height: 1.72;
+  -webkit-overflow-scrolling: touch;
 }
 
 .terminal-sm {
@@ -940,6 +1026,12 @@ body.mode-transitioning .mode-specimen-word {
     position: static;
     width: 100%;
     text-align: left;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 
   .workflow-step {

@@ -15,6 +15,12 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fetchtype.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Caveat:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body class="font-mode-display">
@@ -37,9 +43,9 @@
             <span>fetchtype</span>
           </a>
           <nav class="site-nav">
-            <a href="#problem">problem</a>
-            <a href="#proof">proof</a>
-            <a href="#install">install</a>
+            <a href="#problem">why</a>
+            <a href="#proof">how it works</a>
+            <a href="#install">get started</a>
             <a href="https://fetchtype.dev">docs</a>
           </nav>
         </header>
@@ -51,8 +57,8 @@
           <div class="act-marker" aria-hidden="true">①</div>
 
           <div class="hero-copy reveal">
-            <p class="eyebrow">typography validation for design systems</p>
-            <h1>Most of what your users do is&nbsp;read.</h1>
+            <p class="eyebrow"><span class="accent-serif">typography validation</span> for design systems</p>
+            <h1>Most of what your users do is&nbsp;<span class="gradient-fill">read.</span></h1>
             <p class="hero-sub">
               Typography is the largest functional surface of any interface.
               Most teams never validate any of it.
@@ -69,13 +75,13 @@
   ⚠ prose width — 92ch (maximum 75ch)
 
   0 passed · 1 error · 3 warnings</code></pre>
-            <p class="proof-verdict">These are testable failures, not&nbsp;taste.</p>
+            <p class="proof-verdict">These are <span class="text-highlight">testable failures</span>, <span class="accent-serif">not&nbsp;taste.</span></p>
           </div>
 
           <div class="problem-context reveal">
             <p>
-              <strong>the drift</strong> — Your designer specifies 1.5
-              line-height. Your developer ships 1.2. Nobody catches it because
+              <strong>the drift</strong> — Your designer specifies <span class="text-mark">1.5
+              line-height</span>. Your developer ships <span class="text-mark">1.2</span>. Nobody catches it because
               there's nothing to catch it.
             </p>
             <p>
@@ -83,9 +89,14 @@
               loading, WCAG thresholds — expertise most teams don't have.
             </p>
             <p>
-              <strong>the cost</strong> — If it's hard, teams skip it. Safe
-              font, arbitrary sizes, generic product.
+              <strong>the cost</strong> — If it's hard, teams skip it. <span class="text-highlight">Safe
+              font, arbitrary sizes, generic product.</span>
             </p>
+          </div>
+
+          <div class="hero-cta reveal">
+            <pre class="terminal terminal-sm"><code>pnpm add -D fetchtype</code></pre>
+            <span class="hero-cta-note">Free and open source. One&nbsp;dependency.</span>
           </div>
         </section>
 
@@ -97,9 +108,9 @@
 
           <div class="mode-stage reveal">
             <div class="mode-stage-header">
-              <h2>The page you're looking at is the&nbsp;demo.</h2>
+              <h2>One token file. Four typography&nbsp;modes.</h2>
               <p class="hero-sub">
-                Click a mode. The entire page re-renders — typography, color,
+                Click a mode below. The entire page re-renders — typography, color,
                 spacing. These are real CSS tokens, validated and exported by
                 fetchtype.
               </p>
@@ -108,7 +119,7 @@
             <div class="mode-showcase">
               <div class="mode-specimen">
                 <div class="mode-specimen-word role-display" id="mode-word">Aa</div>
-                <p class="mode-specimen-caption" id="mode-caption">
+                <p class="mode-specimen-caption accent-handwritten" id="mode-caption">
                   Typography carries the emotional weight of the interface.
                 </p>
               </div>
@@ -309,11 +320,13 @@ fetchtype init --prompt "modern SaaS with dark mode"</code></pre>
           </div>
 
           <div class="install-cta reveal">
+            <h3 class="cta-heading"><span class="gradient-fill">Start validating typography&nbsp;today.</span></h3>
             <pre class="terminal"><code>pnpm add -D fetchtype</code></pre>
+            <p class="cta-sub">Free and open source. Works with any stack.</p>
             <div class="cta-links">
-              <a class="button button-primary" href="https://fetchtype.dev">docs</a>
+              <a class="button button-primary" href="https://fetchtype.dev">read the docs</a>
+              <a class="button button-primary" href="https://github.com/Tim-ReJet/fetchtype">view on github</a>
               <a class="button button-secondary" href="https://www.npmjs.com/package/fetchtype">npm</a>
-              <a class="button button-secondary" href="https://github.com/Tim-ReJet/fetchtype">github</a>
             </div>
           </div>
         </section>
