@@ -1,11 +1,32 @@
 {
   "name": "fetchtype",
   "version": "0.1.0",
+  "description": "Typography validation for design systems. Catch readability bugs, enforce WCAG thresholds, export to CSS/Tailwind/shadcn/W3C.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tim-ReJet/fetchtype.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://fetchtype.com",
+  "keywords": [
+    "typography",
+    "design-tokens",
+    "validation",
+    "wcag",
+    "accessibility",
+    "tailwind",
+    "shadcn",
+    "css",
+    "design-system",
+    "font"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "bin": {
     "fetchtype": "dist/bin.js"
