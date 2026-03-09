@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "description": "Machine-readable project snapshot. Update alongside proj-progress.txt after major milestones.",
+    "last_updated": "2026-03-09T17:50:00+0200"
+  },
+  "phase": "phases-1-6-complete",
+  "current_goal": "All 6 build-to-launch phases implemented. Site update and W3C interchange remain.",
+  "feature_file": "feature-list.json",
+  "test_count": 134,
+  "completed": [
+    "Agent workflow artifacts added",
+    "Workspace now builds, tests, type-checks, and lints",
+    "CLI init, validate, and build commands implemented",
+    "Core accessibility validation and CSS/JSON export implemented",
+    "Launch strategy and free-tier monetization framing documented",
+    "Canonical preset source moved into @fetchtype/core",
+    "Alias resolution and named theme support implemented",
+    "GitHub validation action and workflow added",
+    "Google Fonts and self-hosted font reference helpers added",
+    "Packaged CLI tarball and package-spec GitHub Action path verified outside the repo layout",
+    "CLI build command now supports format-scoped artifact output for external CI usage",
+    "CLI validate now emits GitHub workflow annotations and step-summary markdown for PR review flows",
+    "Launch docs now define an icon-led anti-bento visual direction for future UI and marketing work",
+    "Static launch site and root Vercel deployment config added for fetchtype.com",
+    "Homepage rewritten: problem-first copy, specific WCAG thresholds, visual briefs for assets",
+    "Docs page rewritten: stripped internal ops, added token format docs, validation rules, CI workflow",
+    "Build-to-launch roadmap created with 6 phases from validator strengthening through agent integration",
+    "HANDOVER.md rewritten with tone guidelines, file map, feature additions F019–F032, and session protocol",
+    "Phase 1: 7 new validation rules, computed type scale, 4 presets (editorial/dashboard/ecommerce/docs), --preset flag",
+    "Phase 2: Typography modes (display/interface/reading/mono) in schema, mode-aware CSS and validation",
+    "Phase 3: Tailwind config exporter, shadcn CSS exporter, hex-to-HSL conversion",
+    "Phase 4: HTML report generator (--report), preview dev server (fetchtype preview) with file watching",
+    "Phase 5: Google Fonts catalog (31 fonts), font suggestion engine, font loading validation (fallbacks/payload/availability)",
+    "Phase 6: MCP server with 5 tools via @modelcontextprotocol/sdk, natural language init (--prompt) with rule-based parsing",
+    "F018: W3C Design Tokens $value import/export with CLI import command and build --format w3c",
+    "Publish fetchtype to npm (renamed from @fetchtype/cli)"
+  ],
+  "blocked": [],
+  "next": [
+    "Update site HTML to reflect Phase 1-6 capabilities (presets, modes, exporters, preview, font intelligence, agent integration)"
+  ]
+}

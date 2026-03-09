@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetchtype — typography validation for design systems</title>
+    <meta
+      name="description"
+      content="Agent-native typography validation. Validate tokens, export to Tailwind and shadcn, suggest fonts, review in CI."
+    />
+    <meta property="og:title" content="fetchtype" />
+    <meta
+      property="og:description"
+      content="Agent-native typography validation. Validate tokens, export to Tailwind and shadcn, suggest fonts, review in CI."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fetchtype.com" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="intro-active font-mode-display">
+    <div
+      class="intro-overlay"
+      id="intro-overlay"
+      role="button"
+      tabindex="0"
+      aria-label="Render page"
+    >
+      <div class="intro-surface">
+        <div class="intro-file">fetchtype.tokens.json</div>
+        <pre class="intro-source"><code>{
+  "typography": {
+    "body":    { "lineHeight": 1.6, "fontSize": "1rem" },
+    "heading": { "lineHeight": 1.1, "fontSize": "3rem" },
+    "button":  { "fontSize": "0.9375rem" },
+    "caption": { "fontSize": "0.8125rem" }
+  },
+  "color": {
+    "light": { "text": "#111827", "background": "#ffffff" },
+    "dark":  { "text": "#f9fafb", "background": "#111827" }
+  },
+  "hierarchy": {
+    "scale": "major-third",
+    "baseSize": "1rem"
+  }
+}
+
+$ fetchtype validate --input fetchtype.tokens.json
+
+  ✓ contrast — 15.4:1 light, 14.8:1 dark
+  ✓ body line-height — 1.6 (minimum 1.5)
+  ✓ button font-size — 15px (minimum 14px)
+  ✓ caption font-size — 13px (minimum 11px)
+  ✓ prose max-width — 68ch (maximum 75ch)
+  ✓ heading sizes — h1 → h6 decreasing
+  ✓ heading/body line-height ratio — valid
+  ✓ spacing scale — monotonically increasing
+  ✓ scale divergence — within ±10%
+  ✓ dark mode — complete
+  ✓ font fallbacks — present
+  ✓ font payload — estimated 94KB (≤ 150KB)
+  ✓ references — all aliases resolve, no cycles
+
+  13 passed · 0 errors · 0 warnings</code></pre>
+        <div class="intro-action">click anywhere to render</div>
+      </div>
+    </div>
+
+    <div class="type-ripple" aria-hidden="true">
+      <div class="type-ripple-row">Aa UI Ag {} Aa UI Ag {}</div>
+      <div class="type-ripple-row type-ripple-row-alt">display interface reading mono</div>
+    </div>
+
+    <main class="site-home">
+      <div class="page-shell">
+        <header class="site-header">
+          <a class="brand" href="/" aria-label="fetchtype home">
+            <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-hidden="true">
+              <path d="M12 18h28l12 12-12 12H12z" />
+              <path d="M22 18v28" />
+              <path d="M22 30h26" />
+            </svg>
+            <span>fetchtype</span>
+          </a>
+          <nav class="site-nav">
+            <a href="#problem">why</a>
+            <a href="#validation">what</a>
+            <a href="#install">install</a>
+            <a href="/docs/">docs</a>
+          </nav>
+        </header>
+
+        <!-- ═══════════════════════════════════════════════════
+             HERO — lead with the problem, not the product
+             ═══════════════════════════════════════════════════ -->
+        <section class="rendered-hero assemble-target">
+          <div class="hero-copy">
+            <p class="eyebrow">typography validation for design systems</p>
+            <h1>Most of what your users do is read.</h1>
+            <p class="hero-text">
+              Typography is the largest functional surface of any interface. It determines whether
+              your product feels considered or careless, whether content is readable or exhausting,
+              whether your brand holds together across every screen or quietly drifts apart.
+              Most teams never validate any of it.
+            </p>
+          </div>
+
+          <div class="hero-frame">
+            <div class="hero-frame-media">
+              <div class="hero-frame-word role-display" id="mode-word">Aa</div>
+              <p class="hero-frame-note" id="mode-caption">
+                Typography carries the emotional weight of the interface.
+              </p>
+            </div>
+            <div class="hero-frame-controls">
+              <p class="control-hint">click a role to re-render the whole page</p>
+              <div class="role-tabs" role="tablist" aria-label="Typography roles">
+                <button
+                  class="role-tab is-active"
+                  type="button"
+                  data-role="display"
+                  aria-pressed="true"
+                >
+                  display
+                </button>
+                <button class="role-tab" type="button" data-role="interface" aria-pressed="false">
+                  interface
+                </button>
+                <button class="role-tab" type="button" data-role="reading" aria-pressed="false">
+                  reading
+                </button>
+                <button class="role-tab" type="button" data-role="mono" aria-pressed="false">
+                  mono
+                </button>
+              </div>
+              <div class="mode-copy">
+                <p class="card-kicker" id="mode-label">display</p>
+                <h2 id="mode-title">Type as brand presence.</h2>
+                <p class="hero-text" id="mode-description">
+                  Large headings, open spacing, serif warmth. Display typography carries the
+                  emotional weight of the product and makes it feel unmistakably designed.
+                  These modes are real: <code>fetchtype build</code> emits
+                  <code>[data-mode="display"]</code> CSS blocks so each context renders with
+                  its own typographic treatment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             THE PROBLEM — why typography goes wrong
+             ═══════════════════════════════════════════════════ -->
+        <section class="system-shell assemble-target" id="problem">
+          <div class="system-grid">
+
+            <!--
+              VISUAL BRIEF — Card 1: "The drift"
+              Show a side-by-side comparison of a Figma spec vs shipped code.
+              Left column: design intent (line-height: 1.5, font-size: 16px, max-width: 65ch).
+              Right column: what shipped (line-height: 1.2, font-size: 14px, max-width: none).
+              Each row has a red/amber indicator. Terminal-style typography, not a screenshot.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">the drift</p>
+              <h3>Design intent doesn't survive the build.</h3>
+              <p>
+                Your designer specifies 1.5 line-height. Your developer ships 1.2 because the
+                Tailwind default felt close enough. Your h2 is 24px in the dashboard and 20px in
+                settings. Nobody catches it because there's nothing to catch it.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — Card 2: "The numbers"
+              Four small diagnostic panels showing real validation checks:
+              1. A paragraph with line-height overlay (1.2 vs 1.5, gap between lines marked)
+              2. Two color swatches with contrast ratio: 4.0:1 in red, 4.6:1 in green
+              3. A button "Submit" at 12px next to one at 15px
+              4. A text block with character-count ruler: 92ch vs 68ch
+              Each panel styled like fetchtype validation output.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">the numbers</p>
+              <h3>These are testable failures, not taste.</h3>
+              <p>
+                Body text at 1.2 line-height fails WCAG 1.4.12. Text at #6b7280 on white gives
+                4.0:1 contrast — WCAG AA requires 4.5:1. A 12px button is too small for touch.
+                Prose at 92 characters per line causes reading fatigue. All of these are specific,
+                measurable, and fixable.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — Card 3: "The cause"
+              A timeline showing typography drift across sprints:
+              Sprint 1: consistent tokens ship. Sprint 4: hardcoded 14px in a new component.
+              Sprint 8: different heading scale on marketing page. Sprint 12: accessibility audit
+              flags 23 violations. The timeline gets progressively messier — more divergent lines.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">the cause</p>
+              <h3>Typography involves expertise most teams don't have.</h3>
+              <p>
+                Type scales, vertical rhythm, font loading strategy, optical sizing, fallback
+                metrics, WCAG thresholds — most developers learned typography by copying what looked
+                right. Without a linter, without a test suite, without a CI check, it drifts.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — Card 4: "The cost"
+              A product screenshot (or stylized UI) showing the cumulative effect: a settings page
+              with 4 different font sizes for similar elements, inconsistent spacing, a caption
+              that's nearly invisible against its background. Annotated with fetchtype diagnostic
+              markers. The point: none of this looks "broken" — it looks slightly off, which is
+              worse because nobody catches it.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">the cost</p>
+              <h3>The alternative is not doing it at all.</h3>
+              <p>
+                If typography is hard, teams skip it. They pick a safe font, set some arbitrary
+                sizes, and move on. The result is products that feel generic, readability problems
+                that surface in production, and accessibility gaps that appear during audits.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             WHAT FETCHTYPE DOES — the solution
+             ═══════════════════════════════════════════════════ -->
+        <section class="system-shell assemble-target" id="validation">
+          <div class="system-grid">
+
+            <!--
+              VISUAL BRIEF — Validation output
+              A full-width terminal block showing real fetchtype validate output:
+                ✗ color.light — contrast ratio 4.0:1 (requires ≥ 4.5:1)
+                  text: #6b7280 on background: #ffffff
+                ⚠ typography.body — line-height 1.3 (recommended ≥ 1.5)
+                ✓ typography.button — font-size 15px (minimum 14px)
+                ✓ layout.maxWidth.prose — 68ch (maximum 75ch)
+                ✓ references — all aliases resolve, no cycles
+                2 issues · 4 passed · 1 error · 1 warning
+              Monospace, color-coded, dense. This IS the product proof.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">validate</p>
+              <h3>A CI gate for typography.</h3>
+              <p>
+                13 rules check your tokens against WCAG contrast ratios, line-height minimums,
+                font-size thresholds, prose width limits, heading hierarchy, spacing monotonicity,
+                scale divergence, dark mode completeness, font payload size, and structural
+                consistency. Exit code 1 on any error — it works as a build gate.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — Build output
+              Two code panels side by side. Left: tokens.css showing :root {} with CSS custom
+              properties. Right: tailwind.config.ts partial. Both truncated naturally at panel edge.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">export</p>
+              <h3>CSS, Tailwind, shadcn, and W3C tokens.</h3>
+              <p>
+                When validation passes, fetchtype exports to multiple formats.
+                <code>--format css</code> for CSS custom properties.
+                <code>--format tailwind</code> for a tailwind.config.ts partial.
+                <code>--format shadcn</code> for shadcn CSS with HSL variables.
+                <code>--format w3c</code> for W3C Design Tokens format.
+                Dark mode, named themes, typography modes, configurable prefix.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — GitHub PR screenshot
+              A realistic GitHub PR view with fetchtype annotations inline on the diff:
+              "⚠ fetchtype contrast-ratio: text #6b7280 on #ffffff gives 4.0:1 (requires ≥ 4.5:1)"
+              Below the diff, a Step Summary section with the markdown diagnostic table.
+              Should look like real GitHub UI — not stylized, not branded.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">review</p>
+              <h3>Typography violations in the PR, not in production.</h3>
+              <p>
+                Add --github to any validate command. fetchtype emits inline annotations on the
+                pull request diff and a step summary with the full diagnostic report. Typography
+                problems show up where code gets reviewed.
+              </p>
+            </article>
+
+            <!--
+              VISUAL BRIEF — Checks reference
+              A clean typographic table showing all 13 checks with thresholds.
+            -->
+            <article class="system-card">
+              <p class="card-kicker">what gets checked</p>
+              <h3>13 rules. Specific thresholds, not opinions.</h3>
+              <p>
+                Contrast ≥ 4.5:1 (WCAG AA). Body line-height ≥ 1.5. Button font-size ≥ 14px.
+                Caption/label font-size ≥ 11px. Prose width ≤ 75ch.
+                Heading sizes decrease h1 → h6. Heading line-height &lt; body line-height.
+                Spacing scale monotonically increasing. Scale divergence within ±10%.
+                Dark mode completeness across themes. Font fallback chains present.
+                Font payload estimate ≤ 150KB. Token aliases resolve, no circular refs.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             INSTALL — simple, clean, no meta-commentary
+             ═══════════════════════════════════════════════════ -->
+        <section class="install-band assemble-target" id="install">
+          <div>
+            <p class="eyebrow">get started</p>
+            <h2>Presets, modes, multiple export formats.</h2>
+            <p class="hero-text">
+              init writes a validated starter token file from a preset or a natural-language prompt.
+              validate checks it against 13 accessibility and readability rules. build exports to
+              CSS, Tailwind, shadcn, or W3C format. suggest recommends fonts for your context.
+              preview renders a live report. That's the workflow.
+            </p>
+          </div>
+
+          <div class="install-panel">
+            <p class="card-kicker">install</p>
+            <pre class="code-block"><code>pnpm add -D fetchtype
+
+pnpm exec fetchtype init
+pnpm exec fetchtype init --preset dashboard
+pnpm exec fetchtype init --prompt "modern SaaS dashboard"
+pnpm exec fetchtype validate --input fetchtype.tokens.json
+pnpm exec fetchtype build --input fetchtype.tokens.json --format tailwind
+pnpm exec fetchtype suggest --context interface
+pnpm exec fetchtype preview -i fetchtype.tokens.json</code></pre>
+            <div class="install-links">
+              <a class="button button-primary" href="/docs/">docs</a>
+              <a class="button button-secondary" href="/docs/#github">ci setup</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

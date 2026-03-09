@@ -1,0 +1,297 @@
+{
+  "_meta": {
+    "description": "Feature tracker. Only update status, last_tested, and notes.",
+    "statuses": ["failing", "in_progress", "passing"],
+    "priority": "Lower number = higher priority."
+  },
+  "features": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "category": "foundation",
+      "description": "Repo bootstrap artifacts exist: CLAUDE.md, feature-list.json, proj-progress.txt, proj-progress.json, and init.sh.",
+      "status": "passing",
+      "last_tested": "2026-03-06",
+      "notes": "Verified via ./init.sh and root workflow files."
+    },
+    {
+      "id": "F002",
+      "priority": 2,
+      "category": "foundation",
+      "description": "The workspace builds successfully with pnpm build on a clean checkout.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via pnpm build after all 6 phases implemented."
+    },
+    {
+      "id": "F003",
+      "priority": 3,
+      "category": "foundation",
+      "description": "The workspace test suite completes successfully with pnpm test.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "113 tests pass across all packages (core: 64, fonts: 19, cli: 30)."
+    },
+    {
+      "id": "F004",
+      "priority": 4,
+      "category": "cli",
+      "description": "fetchtype init writes a valid starter token file without overwriting existing work unless --force is passed.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via CLI tests. Now supports --preset and --prompt flags."
+    },
+    {
+      "id": "F005",
+      "priority": 5,
+      "category": "cli",
+      "description": "fetchtype validate reads a token file, reports schema and accessibility diagnostics, and exits 0 on pass or 1 on validation failure.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified with passing and failing CLI runs. Now includes font validation and 13 validation rules."
+    },
+    {
+      "id": "F006",
+      "priority": 6,
+      "category": "cli",
+      "description": "fetchtype build emits CSS and JSON token bundles into an output directory when validation passes.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via CLI tests. Now supports --format tailwind/shadcn and --report."
+    },
+    {
+      "id": "F007",
+      "priority": 7,
+      "category": "core",
+      "description": "Core validation catches inaccessible primary text/background contrast pairs when colors are expressed as hex values.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via failing CLI validate path and core tests."
+    },
+    {
+      "id": "F008",
+      "priority": 8,
+      "category": "core",
+      "description": "Core validation warns when typography tokens violate minimum body line-height, button size, or prose width guidance.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via core warning-path tests."
+    },
+    {
+      "id": "F009",
+      "priority": 9,
+      "category": "core",
+      "description": "A reusable base preset exists and can be used by both documentation and the CLI init command.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "5 presets available: base, editorial, dashboard, ecommerce, docs."
+    },
+    {
+      "id": "F010",
+      "priority": 10,
+      "category": "docs",
+      "description": "The repository documents product positioning, free tier, upgrade path, and launch sequencing in a versioned strategy file.",
+      "status": "passing",
+      "last_tested": "2026-03-06",
+      "notes": "Documented in docs/launch-strategy.md."
+    },
+    {
+      "id": "F011",
+      "priority": 11,
+      "category": "launch",
+      "description": "The free tier offers enough local value to drive adoption without requiring hosted infrastructure.",
+      "status": "passing",
+      "last_tested": "2026-03-06",
+      "notes": "Explicitly defined in docs/launch-strategy.md."
+    },
+    {
+      "id": "F012",
+      "priority": 12,
+      "category": "launch",
+      "description": "Paid features are tied to collaboration, governance, policy enforcement, and reporting rather than core validation access.",
+      "status": "passing",
+      "last_tested": "2026-03-06",
+      "notes": "Explicitly defined in docs/launch-strategy.md."
+    },
+    {
+      "id": "F013",
+      "priority": 13,
+      "category": "interop",
+      "description": "The token model documents a path to W3C Design Tokens compatibility, including aliases and future theme extensions.",
+      "status": "passing",
+      "last_tested": "2026-03-06",
+      "notes": "Documented in docs/w3c-interop.md and backed by alias resolution plus named theme support."
+    },
+    {
+      "id": "F014",
+      "priority": 14,
+      "category": "future",
+      "description": "Font resolution supports referenced Google Fonts or self-hosted assets before any hosted CDN work is attempted.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified with fonts package tests. Now includes catalog of 31 Google Fonts and font suggestion engine."
+    },
+    {
+      "id": "F015",
+      "priority": 15,
+      "category": "future",
+      "description": "The token system evolves beyond light/dark into named brands and accessibility modes without breaking current CLI behavior.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Verified via themes, modes (display/interface/reading/mono), and mode-aware CSS generation."
+    },
+    {
+      "id": "F016",
+      "priority": 16,
+      "category": "launch",
+      "description": "A published GitHub-friendly distribution path exists so external repos can validate tokens without depending on this repo layout.",
+      "status": "passing",
+      "last_tested": "2026-03-07",
+      "notes": "Verified via packed fetchtype tarball install in a temp project plus external validate/build runs."
+    },
+    {
+      "id": "F017",
+      "priority": 17,
+      "category": "launch",
+      "description": "CLI output can produce GitHub-friendly summaries or annotations for pull request review flows.",
+      "status": "passing",
+      "last_tested": "2026-03-08",
+      "notes": "Verified via CLI tests plus packed tarball validation with --github."
+    },
+    {
+      "id": "F018",
+      "priority": 18,
+      "category": "interop",
+      "description": "fetchtype can import or export a first-class W3C-style $value token document without losing theme or alias intent.",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "importW3cTokens/exportW3cTokens in @fetchtype/core, CLI import command and build --format w3c. 21 tests covering roundtrip, aliases, themes, modes, minimal import."
+    },
+    {
+      "id": "F019",
+      "priority": 19,
+      "category": "core",
+      "description": "New validation rules: heading levels, caption min size, line-height ratio, spacing consistency, heading size order, dark mode completeness",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "7 new rules implemented: caption/label min size, line-height heading-vs-body, spacing monotonic, heading size direction, scale divergence, theme dark-mode completeness."
+    },
+    {
+      "id": "F020",
+      "priority": 20,
+      "category": "core",
+      "description": "Computed type scale from named ratio + base size",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/core/src/scale.ts with computeHeadingSizes and generateHeadings. SCALE_RATIOS: minor-second through perfect-fifth."
+    },
+    {
+      "id": "F021",
+      "priority": 21,
+      "category": "cli",
+      "description": "--preset <name> flag with editorial/dashboard/ecommerce/docs presets",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "5 presets available via fetchtype init --preset <name>. All presets pass validation."
+    },
+    {
+      "id": "F022",
+      "priority": 22,
+      "category": "core",
+      "description": "Token modes section with independent accessibility validation per mode",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "Modes schema added to types. Base preset has display/interface/reading/mono modes. Mode validation runs all checks independently."
+    },
+    {
+      "id": "F023",
+      "priority": 23,
+      "category": "core",
+      "description": "Mode-aware CSS generation ([data-mode=\"...\"] blocks)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "generateCssVariables emits [data-mode=\"display\"] etc. blocks with only overridden variables."
+    },
+    {
+      "id": "F024",
+      "priority": 24,
+      "category": "core",
+      "description": "Tailwind config exporter (--format tailwind)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/core/src/exporters/tailwind.ts generates tailwind.config.ts partial. 7 tests."
+    },
+    {
+      "id": "F025",
+      "priority": 25,
+      "category": "core",
+      "description": "shadcn CSS exporter (--format shadcn)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/core/src/exporters/shadcn.ts generates CSS with HSL variables. 12 tests."
+    },
+    {
+      "id": "F026",
+      "priority": 26,
+      "category": "cli",
+      "description": "Preview server (fetchtype preview)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/cli/src/preview.ts — Node.js http server with file watching. No external deps."
+    },
+    {
+      "id": "F027",
+      "priority": 27,
+      "category": "cli",
+      "description": "HTML report generator (--report flag)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/core/src/report.ts generates self-contained HTML with specimens, palettes, spacing, and diagnostics. 12 tests."
+    },
+    {
+      "id": "F028",
+      "priority": 28,
+      "category": "fonts",
+      "description": "Google Fonts catalog + system font stack database",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/fonts/src/catalog.ts with 31 popular Google Fonts. lookupFont and searchFonts functions. 8 tests."
+    },
+    {
+      "id": "F029",
+      "priority": 29,
+      "category": "cli",
+      "description": "Font suggestion by context (fetchtype suggest)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/fonts/src/suggest.ts with suggestFonts(). CLI command with --context, --limit, --variable-only, --json. 7+4 tests."
+    },
+    {
+      "id": "F030",
+      "priority": 30,
+      "category": "core",
+      "description": "Font loading validation (availability, payload, fallbacks)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "validateFonts() in core with missing-fallbacks, payload-estimate (150KB), and unknown-family rules. 5 tests."
+    },
+    {
+      "id": "F031",
+      "priority": 31,
+      "category": "cli",
+      "description": "MCP server for AI agent integration",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/cli/src/mcp.ts with 5 tools: validate, build, suggest, init, presets. Uses @modelcontextprotocol/sdk stdio transport. 2 tests."
+    },
+    {
+      "id": "F032",
+      "priority": 32,
+      "category": "cli",
+      "description": "Natural language init (--prompt)",
+      "status": "passing",
+      "last_tested": "2026-03-09",
+      "notes": "packages/cli/src/prompt-init.ts — rule-based prompt parsing (no API key needed). Maps keywords to presets + modifiers. 12 tests."
+    }
+  ]
+}

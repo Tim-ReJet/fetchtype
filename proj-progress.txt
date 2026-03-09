@@ -1,0 +1,79 @@
+## Session 1 — 2026-03-06 04:21 SAST
+**Agent:** coding
+**Goal:** Initialize the repository for long-running agent work and convert the scaffold into a buildable MVP foundation.
+**Completed:** Added workflow artifacts, defined the initial feature tracker, planned a focused core-plus-CLI MVP, and queued launch/GTM documentation work.
+**Blocked:** Runtime packages are still missing source files; build and test are not yet green at this point in the session.
+**Next:** Add minimal package entrypoints, implement CLI init/validate/build, add preset/test coverage, then rerun pnpm build and pnpm test.
+**Commit:** uncommitted
+
+## Session 2 — 2026-03-06 04:35 SAST
+**Agent:** coding
+**Goal:** Finish the MVP foundation so the repo builds, tests, and documents a launchable direction.
+**Completed:** Added buildable entrypoints for all packages, implemented core validation/export helpers, shipped CLI `init`/`validate`/`build`, added preset and rules docs, wrote launch strategy guidance, and verified `pnpm build`, `pnpm test`, `pnpm typecheck`, `pnpm lint`, `./init.sh`, and direct CLI smoke flows.
+**Blocked:** The base preset is duplicated between TypeScript and JSON, W3C alias compatibility is still only planned, and future font/theme expansion remains placeholder-level.
+**Next:** Unify preset source of truth, add W3C token alias support and richer theme modes, then package a GitHub Action and CI-first onboarding flow to support launch.
+**Commit:** uncommitted
+
+## Session 3 — 2026-03-06 10:53 SAST
+**Agent:** coding
+**Goal:** Close the remaining MVP gaps around preset unification, interop, theme depth, and CI distribution.
+**Completed:** Moved the canonical preset to `packages/core/src/base.tokens.json`, added alias resolution and named theme support, documented the W3C interop path, added a composite GitHub validation action plus workflow, added Google Fonts and self-hosted font reference helpers with tests, and re-verified `pnpm build`, `pnpm typecheck`, `pnpm test`, `pnpm lint`, and direct CLI validation against the canonical preset.
+**Blocked:** External distribution still depends on repo-local source layout, PR-friendly annotation output is not implemented, and W3C `$value` import/export remains future work.
+**Next:** Package a release-friendly distribution path for the GitHub Action, add GitHub summary/annotation output to the CLI, and build a dedicated W3C import/export layer.
+**Commit:** uncommitted
+
+## Session 4 — 2026-03-07 12:46 SAST
+**Agent:** coding
+**Goal:** Close the external distribution gap so `fetchtype` works from a packaged install, not just inside this workspace.
+**Completed:** Scoped the CLI package for publishable `dist`-only tarballs, bundled internal `@fetchtype/*` code while keeping runtime dependencies installable, updated the composite GitHub action to install from a package spec, added `pnpm pack:cli` and distribution docs, implemented `fetchtype build --format`, and verified the tarball from a fresh temp project with external `validate` and `build` runs plus repo-wide `pnpm test`, `pnpm typecheck`, `pnpm lint`, and `pnpm pack:cli`.
+**Blocked:** PR-friendly GitHub annotation output is still missing, and W3C `$value` import/export is still not implemented.
+**Next:** Add GitHub summary/annotation output to `fetchtype validate`, then implement first-class W3C token interchange without losing alias or theme intent.
+**Commit:** uncommitted
+
+## Session 5 — 2026-03-08 16:35 SAST
+**Agent:** coding
+**Goal:** Add GitHub-native PR review output and tighten the repo's visual direction so future launch/UI work stops defaulting to generic bento layouts.
+**Completed:** Implemented `fetchtype validate --github` with GitHub workflow annotations and `GITHUB_STEP_SUMMARY` markdown output, updated the composite validation action to enable that path, added coverage in the CLI test suite, re-verified the packaged tarball in a temp project with failing-token annotations and summary output, and documented an icon-led anti-bento visual system in `docs/visual-direction.md` with launch-strategy references.
+**Blocked:** W3C `$value` import/export is still not implemented.
+**Next:** Implement first-class W3C token interchange, then turn the visual-direction guidance into a real launch page or dashboard surface.
+**Commit:** uncommitted
+
+## Session 6 — 2026-03-08 16:44 SAST
+**Agent:** coding
+**Goal:** Prepare `fetchtype.com` for launch with a real landing surface and a deploy path that only leaves DNS and host-account actions outside the repo.
+**Completed:** Added a static launch site in `apps/web`, checked in a root `vercel.json` so the repo can deploy from the monorepo root, documented the domain cutover path in `docs/domain-launch.md`, aligned the launch messaging around TypeScript-team guidance and review artifacts, and verified both `pnpm build` and the web build output.
+**Blocked:** Going live still requires importing the repo into Vercel and adding the final Porkbun DNS records; W3C `$value` import/export is still not implemented.
+**Next:** Attach `fetchtype.com` and `www.fetchtype.com` in Vercel, set the recommended Porkbun records, then return to first-class W3C token interchange.
+**Commit:** uncommitted
+
+## Session 7 — 2026-03-09 SAST
+**Agent:** coding
+**Goal:** Audit product capabilities vs. site claims, rewrite all website copy to match reality, and create a phased roadmap from current state through "agent-native" positioning.
+**Completed:** Audited the full codebase to map what actually works vs. what the site promises. Read Grilli Type's variable fonts guide and web fonts guide as reference for writing tone (lead with the reader's situation, teach through the problem, prove expertise with specificity). Rewrote `apps/web/index.html` (homepage) to lead with the problem, not the product — "Most of what your users do is read." Rewrote `apps/web/docs/index.html` to strip internal ops (Vercel, DNS) and add real documentation (token format, validation rules with WCAG references, build output examples, CI workflow). Updated `apps/web/script.js` mode copy to match new tone. Created `docs/build-to-launch.md` with 7 phases (0–6) from honest MVP through agent integration. Rewrote `HANDOVER.md` with complete roadmap, tone guidelines, file map, feature list additions (F019–F032), and session protocol. Established content principles: no claims ahead of capabilities, specific numbers over category labels, teach through the problem not around it.
+**Blocked:** No code capabilities were built this session — this was content/planning only.
+**Next:** Phase 1 — add 6 new validation rules, computed type scale, 4 presets, --preset flag. Then Phase 2 — make typography modes real in the token schema.
+**Commit:** uncommitted
+
+## Session 8 — 2026-03-09 SAST
+**Agent:** coding
+**Goal:** Build Phases 1–6 from the roadmap: validator strengthening through agent integration.
+**Completed:**
+- **Phase 1:** 7 new validation rules (caption/label min size, heading-vs-body line-height, spacing monotonic, heading size direction, scale divergence, theme dark-mode completeness). Computed type scale from named ratios (minor-second through perfect-fifth). 4 new presets (editorial, dashboard, ecommerce, docs). `--preset` flag on init.
+- **Phase 2:** Typography modes (display, interface, reading, mono) in token schema. Mode-aware CSS generation (`[data-mode="..."]` blocks). Mode-aware validation (each mode checked independently). Base preset updated with 4 modes.
+- **Phase 3:** Tailwind config exporter (`--format tailwind`). shadcn/ui CSS exporter (`--format shadcn`). Hex-to-HSL conversion for shadcn variables.
+- **Phase 4:** HTML report generator (`--report` flag) with heading/body/button specimens, color palettes with contrast ratios, spacing scale visualization, mode switcher, diagnostics table. Preview dev server (`fetchtype preview`) with file watching.
+- **Phase 5:** Google Fonts catalog (31 fonts with metadata). Font suggestion engine (`fetchtype suggest --context`). Font loading validation (missing fallbacks, payload estimate >150KB, unknown family). Integrated into CLI validate.
+- **Phase 6:** MCP server with 5 tools (validate, build, suggest, init, presets) via @modelcontextprotocol/sdk. Natural language init (`--prompt`) using rule-based keyword matching (no API key required).
+- 113 tests pass across all packages. Build clean. Features F019–F032 all passing.
+- **F018:** W3C Design Tokens $value import/export. `importW3cTokens`/`exportW3cTokens` in @fetchtype/core. CLI `import` command and `build --format w3c`. Roundtrip preserves colors, typography, spacing, themes, modes. 21 new tests (19 core + 2 CLI). 134 total tests passing.
+**Blocked:** None.
+**Next:** Update site HTML to reflect new capabilities. Publish to npm.
+**Commit:** uncommitted
+
+## Session 9 — 2026-03-09 SAST
+**Agent:** coding
+**Goal:** Publish fetchtype CLI to npm and update all package references.
+**Completed:** Published `fetchtype@0.1.0` to npm (unscoped, was `@fetchtype/cli`). Updated all references across 13 files from `@fetchtype/cli` to `fetchtype`. Build and all 134 tests pass.
+**Blocked:** None.
+**Next:** Commit all changes. Vercel deployment for fetchtype.com.
+**Commit:** uncommitted
