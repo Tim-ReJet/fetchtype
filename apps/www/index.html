@@ -15,6 +15,10 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fetchtype.com" />
+    <meta property="og:image" content="https://fetchtype.com/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,6 +26,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
   </head>
   <body class="font-mode-display">
     <canvas id="grain" aria-hidden="true"></canvas>
@@ -30,6 +35,8 @@
       <div class="type-ripple-row">Aa UI Ag {} Aa UI Ag {}</div>
       <div class="type-ripple-row type-ripple-row-alt">display interface reading mono</div>
     </div>
+
+    <a class="skip-link" href="#problem">Skip to content</a>
 
     <main class="site-home">
       <div class="page-shell">
@@ -129,27 +136,35 @@
                   <div class="role-tabs" role="tablist" aria-label="Typography modes">
                     <button
                       class="role-tab is-active"
+                      role="tab"
                       type="button"
                       data-role="display"
-                      aria-pressed="true"
+                      aria-selected="true"
+                      tabindex="0"
                     >display</button>
                     <button
                       class="role-tab"
+                      role="tab"
                       type="button"
                       data-role="interface"
-                      aria-pressed="false"
+                      aria-selected="false"
+                      tabindex="-1"
                     >interface</button>
                     <button
                       class="role-tab"
+                      role="tab"
                       type="button"
                       data-role="reading"
-                      aria-pressed="false"
+                      aria-selected="false"
+                      tabindex="-1"
                     >reading</button>
                     <button
                       class="role-tab"
+                      role="tab"
                       type="button"
                       data-role="mono"
-                      aria-pressed="false"
+                      aria-selected="false"
+                      tabindex="-1"
                     >mono</button>
                   </div>
                 </div>
@@ -185,27 +200,35 @@
             <div class="export-tabs" role="tablist" aria-label="Export formats">
               <button
                 class="export-tab is-active"
+                role="tab"
                 type="button"
                 data-format="css"
-                aria-pressed="true"
+                aria-selected="true"
+                tabindex="0"
               >CSS</button>
               <button
                 class="export-tab"
+                role="tab"
                 type="button"
                 data-format="tailwind"
-                aria-pressed="false"
+                aria-selected="false"
+                tabindex="-1"
               >Tailwind</button>
               <button
                 class="export-tab"
+                role="tab"
                 type="button"
                 data-format="shadcn"
-                aria-pressed="false"
+                aria-selected="false"
+                tabindex="-1"
               >shadcn</button>
               <button
                 class="export-tab"
+                role="tab"
                 type="button"
                 data-format="w3c"
-                aria-pressed="false"
+                aria-selected="false"
+                tabindex="-1"
               >W3C</button>
             </div>
             <div class="export-panels">
@@ -332,6 +355,11 @@ fetchtype init --prompt "modern SaaS with dark mode"</code></pre>
         </section>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <span>fetchtype</span>
+      <span>MIT License</span>
+    </footer>
 
     <script type="module" src="/script.js"></script>
   </body>

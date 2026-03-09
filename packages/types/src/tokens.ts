@@ -63,6 +63,7 @@ export const ColorTokensSchema = z.object({
     default: ColorTokenSchema,
     hover: ColorTokenSchema,
     active: ColorTokenSchema,
+    focus: ColorTokenSchema,
     disabled: ColorTokenSchema,
   }),
 });

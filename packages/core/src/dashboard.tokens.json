@@ -99,6 +99,7 @@
         "default": { "value": "#2563eb" },
         "hover": { "value": "#1d4ed8" },
         "active": { "value": "#1e40af" },
+        "focus": { "value": "#2563eb" },
         "disabled": { "value": "#94a3b8" }
       }
     },
@@ -125,6 +126,7 @@
         "default": { "value": "#60a5fa" },
         "hover": { "value": "#93c5fd" },
         "active": { "value": "#bfdbfe" },
+        "focus": { "value": "#60a5fa" },
         "disabled": { "value": "#475569" }
       }
     }

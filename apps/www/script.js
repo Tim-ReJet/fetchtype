@@ -72,7 +72,8 @@ const ROLE_CONTENT = {
 };
 
 const FONT_MODE_CLASSES = Object.values(ROLE_CONTENT).map((entry) => entry.bodyClass);
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+let prefersReducedMotion = motionQuery.matches;
 
 /* ═══════════════════════════════════════════════════
    MODE SWITCHING
@@ -108,7 +109,8 @@ function setRole(role) {
   roleTabs.forEach((tab) => {
     const isActive = tab.dataset.role === role;
     tab.classList.toggle('is-active', isActive);
-    tab.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    tab.setAttribute('tabindex', isActive ? '0' : '-1');
   });
 
   window.clearTimeout(setRole.timeoutId);
@@ -126,25 +128,53 @@ roleTabs.forEach((tab) => {
   });
 });
 
+function initTablistKeyboard(tabs, getKey, activate) {
+  const tablist = tabs[0]?.parentElement;
+  if (!tablist) return;
+  tablist.addEventListener('keydown', (e) => {
+    const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!keys.includes(e.key)) return;
+    e.preventDefault();
+    const current = tabs.indexOf(document.activeElement);
+    if (current < 0) return;
+    let next;
+    if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = tabs.length - 1;
+    tabs[next].focus();
+    activate(tabs[next]);
+  });
+}
+
+initTablistKeyboard(roleTabs, (t) => t.dataset.role, (t) => {
+  if (t.dataset.role) setRole(t.dataset.role);
+});
+
 /* ═══════════════════════════════════════════════════
    EXPORT FORMAT TABS
    ═══════════════════════════════════════════════════ */
 
+function setExportFormat(format) {
+  exportTabs.forEach((t) => {
+    const isActive = t.dataset.format === format;
+    t.classList.toggle('is-active', isActive);
+    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    t.setAttribute('tabindex', isActive ? '0' : '-1');
+  });
+  exportPanels.forEach((panel) => {
+    panel.classList.toggle('is-active', panel.dataset.format === format);
+  });
+}
+
 exportTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
-    const format = tab.dataset.format;
-    if (!format) return;
-
-    exportTabs.forEach((t) => {
-      const isActive = t.dataset.format === format;
-      t.classList.toggle('is-active', isActive);
-      t.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-
-    exportPanels.forEach((panel) => {
-      panel.classList.toggle('is-active', panel.dataset.format === format);
-    });
+    if (tab.dataset.format) setExportFormat(tab.dataset.format);
   });
+});
+
+initTablistKeyboard(exportTabs, (t) => t.dataset.format, (t) => {
+  if (t.dataset.format) setExportFormat(t.dataset.format);
 });
 
 /* ═══════════════════════════════════════════════════
@@ -256,6 +286,8 @@ setTimeout(initReveals, 60);
    GRAIN OVERLAY
    ═══════════════════════════════════════════════════ */
 
+let grainRunning = false;
+
 function initGrain() {
   if (!grainCanvas || prefersReducedMotion) return;
 
@@ -283,13 +315,43 @@ function initGrain() {
   }
 
   let index = 0;
-  setInterval(() => {
-    ctx.putImageData(frames[index], 0, 0);
-    index = (index + 1) % frameCount;
-  }, 80);
+  let lastTime = 0;
+  grainRunning = true;
+
+  function tick(now) {
+    if (!grainRunning) return;
+    if (document.hidden) {
+      requestAnimationFrame(tick);
+      return;
+    }
+    if (now - lastTime > 80) {
+      ctx.putImageData(frames[index], 0, 0);
+      index = (index + 1) % frameCount;
+      lastTime = now;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+function stopGrain() {
+  grainRunning = false;
 }
 
 initGrain();
+
+/* ── Reactive reduced-motion ── */
+
+motionQuery.addEventListener('change', () => {
+  prefersReducedMotion = motionQuery.matches;
+  if (prefersReducedMotion) {
+    stopGrain();
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('revealed'));
+  } else {
+    initGrain();
+  }
+});
 
 /* ═══════════════════════════════════════════════════
    INIT

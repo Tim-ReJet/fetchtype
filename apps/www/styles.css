@@ -217,6 +217,25 @@ a {
   text-decoration: none;
 }
 
+/* ── Skip link ── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: #f8f0e4;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 button,
 input,
 textarea,
@@ -289,6 +308,7 @@ pre,
 /* ── TREND: Gradient text fill ── */
 
 .gradient-fill {
+  background: linear-gradient(135deg, var(--role-tone, var(--warm)) 0%, var(--ink) 100%);
   background: linear-gradient(
     135deg,
     var(--role-tone, var(--warm)) 0%,
@@ -312,6 +332,7 @@ pre,
 .text-mark {
   padding: 0.05em 0.25em;
   border-radius: 4px;
+  background: rgba(163, 81, 45, 0.18);
   background: color-mix(in oklch, var(--role-tone, var(--warm)), transparent 82%);
 }
 
@@ -391,6 +412,18 @@ pre,
   font-size: 0.76rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(23, 19, 17, 0.2);
+  color: var(--ink);
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid var(--role-tone, var(--warm));
+  outline-offset: 2px;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -617,11 +650,14 @@ pre,
     border-color 180ms ease;
 }
 
-.export-tab:hover,
-.export-tab:focus-visible {
+.export-tab:hover {
   transform: translateY(-1px);
   border-color: rgba(23, 19, 17, 0.28);
-  outline: none;
+}
+
+.export-tab:focus-visible {
+  outline: 2px solid var(--role-tone, var(--warm));
+  outline-offset: 3px;
 }
 
 .export-tab.is-active {
@@ -778,13 +814,16 @@ pre,
 }
 
 .role-tab:hover,
-.role-tab:focus-visible,
-.button:hover,
-.button:focus-visible {
+.button:hover {
   transform: translateY(-1px);
   border-color: rgba(23, 19, 17, 0.28);
   box-shadow: 0 14px 28px rgba(23, 19, 17, 0.08);
-  outline: none;
+}
+
+.role-tab:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--role-tone, var(--warm));
+  outline-offset: 3px;
 }
 
 .role-tab.is-active {
@@ -857,6 +896,22 @@ pre,
   font-size: clamp(4.8rem, 11vw, 8rem);
   line-height: 0.92;
   letter-spacing: -0.06em;
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
 }
 
 /* ═══════════════════════════════════════════════════

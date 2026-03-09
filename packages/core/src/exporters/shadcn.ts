@@ -88,7 +88,7 @@ const COLOR_MAPPINGS: ColorMapping[] = [
   { shadcnVar: 'accent-foreground', group: 'text', token: 'accent' },
   { shadcnVar: 'border', group: 'border', token: 'default' },
   { shadcnVar: 'input', group: 'border', token: 'default' },
-  { shadcnVar: 'ring', group: 'interactive', token: 'default' },
+  { shadcnVar: 'ring', group: 'interactive', token: 'focus' },
 ];
 
 function getColorValue(
