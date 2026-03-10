@@ -11,7 +11,6 @@ const modeValidation = document.getElementById('mode-validation');
 const modeCss = document.getElementById('mode-css');
 const exportTabs = Array.from(document.querySelectorAll('.export-tab'));
 const exportPanels = Array.from(document.querySelectorAll('.export-panel'));
-const pageShell = document.querySelector('.page-shell');
 const grainCanvas = document.getElementById('grain');
 
 /* ═══════════════════════════════════════════════════
@@ -195,9 +194,26 @@ initTablistKeyboard(exportTabs, (t) => t.dataset.format, (t) => {
 });
 
 /* ═══════════════════════════════════════════════════
-   3D TILT
+   3D TILT — per-element
    ═══════════════════════════════════════════════════ */
 
+const TILT_SELECTORS = [
+  '.hero-copy h1',
+  '.proof-block .terminal',
+  '.proof-verdict',
+  '.mode-specimen',
+  '.workflow-step .terminal',
+  '.ci-block .terminal',
+  '.install-cta .terminal',
+];
+
+function initTiltTargets() {
+  TILT_SELECTORS.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((el) => el.classList.add('tilt-target'));
+  });
+}
+
+const tiltTargets = [];
 const tiltState = {
   active: false,
   targetX: 0,
@@ -211,8 +227,12 @@ function applyTilt() {
   tiltState.currentX += (tiltState.targetX - tiltState.currentX) * 0.08;
   tiltState.currentY += (tiltState.targetY - tiltState.currentY) * 0.08;
 
-  body.style.setProperty('--tilt-x', tiltState.currentX.toFixed(3));
-  body.style.setProperty('--tilt-y', tiltState.currentY.toFixed(3));
+  const x = tiltState.currentX.toFixed(3);
+  const y = tiltState.currentY.toFixed(3);
+  for (const el of tiltTargets) {
+    el.style.setProperty('--tilt-x', x);
+    el.style.setProperty('--tilt-y', y);
+  }
 
   const settled =
     Math.abs(tiltState.targetX - tiltState.currentX) < 0.01 &&
@@ -232,7 +252,10 @@ function queueTilt() {
   }
 }
 
-if (pageShell && !prefersReducedMotion) {
+if (!prefersReducedMotion) {
+  initTiltTargets();
+  tiltTargets.push(...document.querySelectorAll('.tilt-target'));
+
   window.addEventListener('mousemove', (event) => {
     const x = (event.clientX / window.innerWidth - 0.5) * 2;
     const y = (event.clientY / window.innerHeight - 0.5) * 2;

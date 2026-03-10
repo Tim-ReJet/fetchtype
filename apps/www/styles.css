@@ -363,11 +363,24 @@ pre,
   width: min(1320px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.2rem 0 4rem;
-  transform: perspective(1600px) rotateX(calc(var(--tilt-y, 0) * 1deg))
-    rotateY(calc(var(--tilt-x, 0) * 1deg));
-  transform-style: preserve-3d;
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* ── Per-element tilt ── */
+
+.tilt-target {
+  transform: perspective(1200px)
+    rotateX(calc(var(--tilt-y, 0) * var(--tilt-strength, 1) * 1deg))
+    rotateY(calc(var(--tilt-x, 0) * var(--tilt-strength, 1) * 1deg));
+  transform-style: preserve-3d;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.hero-copy h1    { --tilt-strength: 1.4; }
+.terminal        { --tilt-strength: 0.7; }
+.mode-specimen   { --tilt-strength: 1.0; }
+.proof-verdict   { --tilt-strength: 0.9; }
+.install-cta .terminal { --tilt-strength: 0.5; }
 
 .site-header {
   display: flex;
@@ -1182,6 +1195,9 @@ body.mode-transitioning .mode-specimen-sample {
 
   .page-shell {
     width: min(100% - 1.25rem, 100%);
+  }
+
+  .tilt-target {
     transform: none;
   }
 
@@ -1236,9 +1252,11 @@ body.mode-transitioning .mode-specimen-sample {
   .page-shell,
   .act,
   .mode-specimen,
-  .mode-specimen-word {
+  .mode-specimen-word,
+  .tilt-target {
     transition: none;
     animation: none;
+    transform: none;
   }
 
   .type-ripple,
