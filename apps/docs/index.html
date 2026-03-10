@@ -291,7 +291,8 @@ pnpm exec fetchtype suggest --context mono</code></pre>
               <h2>Presets</h2>
               <p>
                 Presets provide opinionated starter token files tuned for specific use cases.
-                Each preset passes all 13 validation rules and includes appropriate type scales,
+                Each preset passes all 13 validation rules, includes WCAG-safe contrast ratios
+                for both light and dark themes, and ships with appropriate type scales,
                 spacing, and color palettes.
               </p>
               <pre class="terminal"><code>pnpm exec fetchtype init --preset editorial</code></pre>
@@ -300,7 +301,7 @@ pnpm exec fetchtype suggest --context mono</code></pre>
               <ul>
                 <li>
                   <strong>base</strong> — general-purpose defaults. Major-third scale, system font
-                  stack, neutral palette. The default when no preset is specified.
+                  stack, neutral palette with light and dark color tokens. The default when no preset is specified.
                 </li>
                 <li>
                   <strong>editorial</strong> — long-form reading. Larger body text (1.125rem),
@@ -312,7 +313,7 @@ pnpm exec fetchtype suggest --context mono</code></pre>
                 </li>
                 <li>
                   <strong>ecommerce</strong> — product and conversion pages. Clear heading hierarchy,
-                  prominent button sizing, high-contrast interactive states.
+                  prominent button sizing, high-contrast interactive states in both light and dark themes.
                 </li>
                 <li>
                   <strong>docs</strong> — documentation sites. Code-friendly with monospace support,
@@ -367,7 +368,8 @@ pnpm exec fetchtype suggest --context mono</code></pre>
               <p>
                 Modes and themes are orthogonal. A page can use <code>[data-theme="dark"]</code> and
                 <code>[data-mode="reading"]</code> simultaneously. Modes override typography tokens;
-                themes override color and other tokens. Both compose without conflict.
+                themes override color tokens (including dark mode contrast pairs). Both compose
+                without conflict — and fetchtype validates every combination.
               </p>
             </section>
 
@@ -375,8 +377,9 @@ pnpm exec fetchtype suggest --context mono</code></pre>
             <section id="checks" class="docs-section">
               <h2>What gets checked</h2>
               <p>
-                Validation runs 13 rules: schema checks first (hard errors), then accessibility,
-                readability, structural, and font-loading checks.
+                Validation runs 13 rules across both light and dark themes: schema checks first
+                (hard errors), then accessibility (WCAG contrast for each theme), readability,
+                structural, and font-loading checks.
               </p>
 
               <h3>Schema (errors)</h3>
@@ -392,9 +395,10 @@ pnpm exec fetchtype suggest --context mono</code></pre>
               <h3>Accessibility (errors)</h3>
               <ul>
                 <li>
-                  <strong>Contrast ratio ≥ 4.5:1</strong> — primary text against primary background,
-                  checked for both light and dark modes using WCAG 2.1 relative luminance
-                  (0.2126R + 0.7152G + 0.0722B). Hex color values.
+                  <strong>Contrast ratio ≥ 4.5:1 (WCAG AA)</strong> — primary text against primary background,
+                  validated separately for light and dark themes. Each reports its own ratio
+                  (<code>contrast.light</code>, <code>contrast.dark</code>) using WCAG 2.1 relative luminance
+                  (0.2126R + 0.7152G + 0.0722B). Ratios ≥ 7:1 are flagged as WCAG AAA.
                 </li>
                 <li>
                   <strong>Required contexts</strong> — body and button typography must be defined.
@@ -442,8 +446,9 @@ pnpm exec fetchtype suggest --context mono</code></pre>
                   ratio should not diverge more than 10% from the declared heading sizes.
                 </li>
                 <li>
-                  <strong>Dark mode completeness</strong> — if a light theme defines a token, the
-                  corresponding dark theme must also define it. Missing dark-mode values are flagged.
+                  <strong>Dark mode completeness</strong> — if a light theme defines a color token, the
+                  corresponding dark theme must also define it. Missing dark-mode values are flagged
+                  so dark themes never ship with untested contrast or missing overrides.
                 </li>
               </ul>
 
