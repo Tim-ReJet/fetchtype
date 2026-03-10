@@ -76,28 +76,29 @@
             <div class="proof-file">what fetchtype catches</div>
             <pre class="terminal"><code>$ fetchtype validate --input tokens.json
 
-  ✗ contrast — 4.0:1 on #6b7280 (requires 4.5:1)
+  ✗ contrast.light — 4.0:1 on #6b7280 (WCAG AA requires 4.5:1)
+  ✗ contrast.dark  — 3.2:1 on #9ca3af / #1f2937 (requires 4.5:1)
   ⚠ body line-height — 1.2 (minimum 1.5)
   ⚠ button font-size — 12px (minimum 14px)
   ⚠ prose width — 92ch (maximum 75ch)
 
-  0 passed · 1 error · 3 warnings</code></pre>
+  0 passed · 2 errors · 3 warnings</code></pre>
             <p class="proof-verdict">These are <span class="text-highlight">testable failures</span>, <span class="accent-serif">not&nbsp;taste.</span></p>
           </div>
 
           <div class="problem-context reveal">
             <p>
               <strong>the drift</strong> — Your designer specifies <span class="text-mark">1.5
-              line-height</span>. Your developer ships <span class="text-mark">1.2</span>. Nobody catches it because
-              there's nothing to catch it.
+              line-height</span>. Your developer ships <span class="text-mark">1.2</span>. Your dark mode contrast
+              is <span class="text-mark">3.2:1</span>. Nobody catches any of it because there's nothing to catch it.
             </p>
             <p>
-              <strong>the cause</strong> — Type scales, vertical rhythm, font
-              loading, WCAG thresholds — expertise most teams don't have.
+              <strong>the cause</strong> — Type scales, vertical rhythm, dark mode contrast, font
+              loading, WCAG AA thresholds — expertise most teams don't have and can't check manually across every theme.
             </p>
             <p>
-              <strong>the cost</strong> — If it's hard, teams skip it. <span class="text-highlight">Safe
-              font, arbitrary sizes, generic product.</span>
+              <strong>the cost</strong> — If it's hard, teams skip it. <span class="text-highlight">Accessibility lawsuits are up 300%.
+              Dark mode ships untested. Generic product.</span>
             </p>
           </div>
 
@@ -124,10 +125,14 @@
             </div>
 
             <div class="mode-showcase">
-              <div class="mode-specimen">
+              <div class="mode-specimen" data-mode="display">
                 <div class="mode-specimen-word role-display" id="mode-word">Aa</div>
+                <div class="mode-specimen-sample" id="mode-sample">
+                  <h4 class="sample-heading">Crafted, not configured</h4>
+                  <p class="sample-body">Every detail considered. Every proportion intentional. Typography at this level isn't decoration — it's the product.</p>
+                </div>
                 <p class="mode-specimen-caption accent-handwritten" id="mode-caption">
-                  Typography carries the emotional weight of the interface.
+                  When type is this deliberate, the interface disappears.
                 </p>
               </div>
 
@@ -173,22 +178,29 @@
                   <p class="card-kicker" id="mode-label">display</p>
                   <h3 id="mode-title">Type as brand presence.</h3>
                   <p id="mode-description">
-                    Large headings, open spacing, serif warmth. Display
-                    typography carries the emotional weight of the product.
+                    Large headings, open spacing, deliberate contrast. Display
+                    typography carries emotional weight — validated for WCAG AA
+                    in both light and dark themes.
                   </p>
                 </div>
 
                 <div class="mode-output">
-                  <pre class="terminal terminal-sm" id="mode-validation"><code>  ✓ contrast — 15.4:1 light, 14.8:1 dark
+                  <pre class="terminal terminal-sm" id="mode-validation"><code>  ✓ contrast.light — 15.4:1 (WCAG AAA)
+  ✓ contrast.dark  — 14.8:1 (WCAG AAA)
   ✓ body line-height — 1.6 (≥ 1.5)
   ✓ heading line-height — 0.95 (&lt; body)
   ✓ heading sizes — h1 → h6 decreasing
   ✓ scale divergence — within ±10%
 
-  5 passed · 0 errors · 0 warnings</code></pre>
+  6 passed · 0 errors · 0 warnings</code></pre>
                   <pre class="terminal terminal-sm" id="mode-css"><code>[data-mode="display"] {
   --ft-heading-line-height: 0.95;
   --ft-heading-letter-spacing: -0.02em;
+}
+
+[data-mode="display"][data-theme="dark"] {
+  --ft-color-text: #f5f5f4;
+  --ft-color-bg: #0a0a0a;
 }</code></pre>
                 </div>
               </div>
@@ -310,16 +322,16 @@ export default {
               <span class="step-number">1</span>
               <div class="step-content">
                 <h3>fetchtype init</h3>
-                <p>Start from a preset or describe what you're building.</p>
+                <p>Start from a preset with light + dark tokens and WCAG-safe defaults.</p>
                 <pre class="terminal terminal-sm"><code>fetchtype init --preset dashboard
-fetchtype init --prompt "modern SaaS with dark mode"</code></pre>
+fetchtype init --prompt "modern SaaS with dark mode and AAA contrast"</code></pre>
               </div>
             </div>
             <div class="workflow-step">
               <span class="step-number">2</span>
               <div class="step-content">
                 <h3>fetchtype validate</h3>
-                <p>13 rules. Exit code 1 on failure. Works as a CI gate.</p>
+                <p>13 rules across light and dark themes. WCAG contrast, line-height, scale, payload. Exit code 1 on failure.</p>
                 <pre class="terminal terminal-sm"><code>fetchtype validate -i fetchtype.tokens.json</code></pre>
               </div>
             </div>
@@ -345,7 +357,7 @@ fetchtype init --prompt "modern SaaS with dark mode"</code></pre>
           <div class="install-cta reveal">
             <h3 class="cta-heading"><span class="gradient-fill">Start validating typography&nbsp;today.</span></h3>
             <pre class="terminal"><code>pnpm add -D fetchtype</code></pre>
-            <p class="cta-sub">Free and open source. Works with any stack.</p>
+            <p class="cta-sub">WCAG-compliant tokens for light and dark mode. Free and open source.</p>
             <div class="cta-links">
               <a class="button button-primary" href="https://fetchtype.dev">read the docs</a>
               <a class="button button-primary" href="https://github.com/Tim-ReJet/fetchtype">view on github</a>

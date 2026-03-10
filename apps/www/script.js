@@ -1,6 +1,8 @@
 const body = document.body;
 const roleTabs = Array.from(document.querySelectorAll('.role-tab'));
 const modeWord = document.getElementById('mode-word');
+const modeSample = document.getElementById('mode-sample');
+const modeSpecimen = document.querySelector('.mode-specimen');
 const modeCaption = document.getElementById('mode-caption');
 const modeLabel = document.getElementById('mode-label');
 const modeTitle = document.getElementById('mode-title');
@@ -21,53 +23,61 @@ const ROLE_CONTENT = {
     bodyClass: 'font-mode-display',
     specimen: 'Aa',
     specimenClass: 'mode-specimen-word role-display',
-    caption: 'Typography carries the emotional weight of the interface.',
+    caption: 'When type is this deliberate, the interface disappears.',
+    sampleHeading: 'Crafted, not configured',
+    sampleBody: 'Every detail considered. Every proportion intentional. Typography at this level isn\u2019t decoration \u2014 it\u2019s the product.',
     label: 'display',
     title: 'Type as brand presence.',
     description:
-      'Large headings, open spacing, serif warmth. Display typography carries the emotional weight of the product and makes it feel unmistakably designed.',
+      'Large headings, open spacing, deliberate contrast. Display typography carries emotional weight \u2014 validated for WCAG AA in both light and dark themes.',
     validation:
-      '  \u2713 contrast \u2014 15.4:1 light, 14.8:1 dark\n  \u2713 body line-height \u2014 1.6 (\u2265 1.5)\n  \u2713 heading line-height \u2014 0.95 (< body)\n  \u2713 heading sizes \u2014 h1 \u2192 h6 decreasing\n  \u2713 scale divergence \u2014 within \u00b110%\n\n  5 passed \u00b7 0 errors \u00b7 0 warnings',
-    css: '[data-mode="display"] {\n  --ft-heading-line-height: 0.95;\n  --ft-heading-letter-spacing: -0.02em;\n}',
+      '  \u2713 contrast.light \u2014 15.4:1 (WCAG AAA)\n  \u2713 contrast.dark  \u2014 14.8:1 (WCAG AAA)\n  \u2713 body line-height \u2014 1.6 (\u2265 1.5)\n  \u2713 heading line-height \u2014 0.95 (< body)\n  \u2713 heading sizes \u2014 h1 \u2192 h6 decreasing\n  \u2713 scale divergence \u2014 within \u00b110%\n\n  6 passed \u00b7 0 errors \u00b7 0 warnings',
+    css: '[data-mode="display"] {\n  --ft-heading-line-height: 0.95;\n  --ft-heading-letter-spacing: -0.02em;\n}\n\n[data-mode="display"][data-theme="dark"] {\n  --ft-color-text: #f5f5f4;\n  --ft-color-bg: #0a0a0a;\n}',
   },
   interface: {
     bodyClass: 'font-mode-interface',
     specimen: 'UI',
     specimenClass: 'mode-specimen-word role-interface',
     caption: 'Typography organizes interaction and keeps dense surfaces legible.',
+    sampleHeading: 'Navigation · Settings',
+    sampleBody: 'System preferences updated. 3 items require attention. Review changes before publishing.',
     label: 'interface',
     title: 'Type as functional hierarchy.',
     description:
-      'Tight spacing, neutral sans-serif, crisp weight distinctions. Interface typography favors scanning speed and clear hierarchy over personality.',
+      'Tight spacing, neutral sans-serif, crisp weight distinctions. Dense surfaces validated for accessibility \u2014 contrast, touch targets, and readability across both themes.',
     validation:
-      '  \u2713 contrast \u2014 12.8:1 light, 11.2:1 dark\n  \u26a0 body line-height \u2014 1.45 (minimum 1.5)\n  \u2713 button font-size \u2014 15px (\u2265 14px)\n  \u2713 heading sizes \u2014 h1 \u2192 h6 decreasing\n  \u2713 font payload \u2014 94KB (\u2264 150KB)\n\n  4 passed \u00b7 0 errors \u00b7 1 warning',
-    css: '[data-mode="interface"] {\n  --ft-body-font-size: 0.875rem;\n  --ft-body-line-height: 1.45;\n}',
+      '  \u2713 contrast.light \u2014 12.8:1 (WCAG AAA)\n  \u2713 contrast.dark  \u2014 11.2:1 (WCAG AAA)\n  \u26a0 body line-height \u2014 1.45 (minimum 1.5)\n  \u2713 button font-size \u2014 15px (\u2265 14px)\n  \u2713 heading sizes \u2014 h1 \u2192 h6 decreasing\n  \u2713 font payload \u2014 94KB (\u2264 150KB)\n\n  5 passed \u00b7 0 errors \u00b7 1 warning',
+    css: '[data-mode="interface"] {\n  --ft-body-font-size: 0.875rem;\n  --ft-body-line-height: 1.45;\n}\n\n[data-mode="interface"][data-theme="dark"] {\n  --ft-color-text: #e2e8f0;\n  --ft-color-bg: #0f172a;\n}',
   },
   reading: {
     bodyClass: 'font-mode-reading',
     specimen: 'Ag',
     specimenClass: 'mode-specimen-word role-reading',
     caption: 'Typography reduces fatigue and builds trust over long sessions.',
+    sampleHeading: 'Chapter One',
+    sampleBody: 'She opened the interface and everything felt quieter. The text breathed. The margins held. Reading felt effortless.',
     label: 'reading',
     title: 'Type as sustained comfort.',
     description:
-      'Generous line-height, controlled measure, serif steadiness. Reading typography slows the page down \u2014 quieter, steadier, built for comprehension.',
+      'Generous line-height, controlled measure, serif steadiness. Validated for long-session readability \u2014 WCAG AAA contrast in light and dark, prose width under 75ch.',
     validation:
-      '  \u2713 contrast \u2014 15.4:1 light, 14.8:1 dark\n  \u2713 body line-height \u2014 1.7 (\u2265 1.5)\n  \u2713 prose width \u2014 65ch (\u2264 75ch)\n  \u2713 heading/body ratio \u2014 valid\n  \u2713 font fallbacks \u2014 present\n\n  5 passed \u00b7 0 errors \u00b7 0 warnings',
-    css: '[data-mode="reading"] {\n  --ft-body-line-height: 1.7;\n  --ft-body-font-size: 1.125rem;\n}',
+      '  \u2713 contrast.light \u2014 15.4:1 (WCAG AAA)\n  \u2713 contrast.dark  \u2014 14.8:1 (WCAG AAA)\n  \u2713 body line-height \u2014 1.7 (\u2265 1.5)\n  \u2713 prose width \u2014 65ch (\u2264 75ch)\n  \u2713 heading/body ratio \u2014 valid\n  \u2713 font fallbacks \u2014 present\n\n  6 passed \u00b7 0 errors \u00b7 0 warnings',
+    css: '[data-mode="reading"] {\n  --ft-body-line-height: 1.7;\n  --ft-body-font-size: 1.125rem;\n}\n\n[data-mode="reading"][data-theme="dark"] {\n  --ft-color-text: #faf5ef;\n  --ft-color-bg: #1c140f;\n}',
   },
   mono: {
     bodyClass: 'font-mode-mono',
     specimen: '{ }',
     specimenClass: 'mode-specimen-word role-mono',
     caption: 'Typography exposes the system underneath the product.',
+    sampleHeading: '$ fetchtype validate',
+    sampleBody: 'font-size: 16px;\nline-height: 1.6;\nletter-spacing: -0.01em;',
     label: 'mono',
     title: 'Type as raw structure.',
     description:
-      'Fixed-width, even rhythm, no optical tricks. Mono typography makes the page feel operational \u2014 the literal structure rendered as text.',
+      'Fixed-width, even rhythm, no optical tricks. Contrast-checked for both themes so code and data stay readable at every hour of the day.',
     validation:
-      '  \u2713 contrast \u2014 13.6:1 light, 12.1:1 dark\n  \u2713 body line-height \u2014 1.6 (\u2265 1.5)\n  \u2713 font fallbacks \u2014 monospace generic present\n  \u2713 font payload \u2014 62KB (\u2264 150KB)\n  \u2139 font family \u2014 JetBrains Mono (not in catalog)\n\n  4 passed \u00b7 0 errors \u00b7 0 warnings \u00b7 1 info',
-    css: '[data-mode="mono"] {\n  --ft-body-font-family: "JetBrains Mono", monospace;\n}',
+      '  \u2713 contrast.light \u2014 13.6:1 (WCAG AAA)\n  \u2713 contrast.dark  \u2014 12.1:1 (WCAG AAA)\n  \u2713 body line-height \u2014 1.6 (\u2265 1.5)\n  \u2713 font fallbacks \u2014 monospace generic present\n  \u2713 font payload \u2014 62KB (\u2264 150KB)\n  \u2139 font family \u2014 JetBrains Mono (not in catalog)\n\n  5 passed \u00b7 0 errors \u00b7 0 warnings \u00b7 1 info',
+    css: '[data-mode="mono"] {\n  --ft-body-font-family: "JetBrains Mono", monospace;\n}\n\n[data-mode="mono"][data-theme="dark"] {\n  --ft-color-text: #d4ddd8;\n  --ft-color-bg: #101612;\n}',
   },
 };
 
@@ -92,6 +102,13 @@ function setRole(role) {
     modeWord.className = content.specimenClass;
   }
   if (modeCaption) modeCaption.textContent = content.caption;
+  if (modeSpecimen) modeSpecimen.setAttribute('data-mode', role);
+  if (modeSample) {
+    const heading = modeSample.querySelector('.sample-heading');
+    const bodyText = modeSample.querySelector('.sample-body');
+    if (heading) heading.textContent = content.sampleHeading;
+    if (bodyText) bodyText.textContent = content.sampleBody;
+  }
   if (modeLabel) modeLabel.textContent = content.label;
   if (modeTitle) modeTitle.textContent = content.title;
   if (modeDescription) modeDescription.textContent = content.description;
